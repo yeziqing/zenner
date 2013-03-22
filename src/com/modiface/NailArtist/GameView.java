@@ -154,26 +154,32 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 		//Conditions for shifting:
 		//1. touch coordinates must be on the parameter specified
 		//2. transitioning hasn't arrived at destination coordinates yet
-		if (touchX > width/2 && touchY > 7*height/8 && centerx > width/2 - width) { //Boundaries for shift left virtual space
+		if ((touchX > width/2 && touchY > 7*height/8 && centerx > width/2 - width) || GameVariables.swipe == 1) { //Boundaries for shift left virtual space
+			
+			if (centerx <= width/2-width) GameVariables.swipe=0; //try to reset to "not swiping" state
+			
 			shiftLeft();
 			drawBackground(canvas);
 			canvas.drawBitmap(testScaled, centerx2-testScaled.getWidth()/2, 0, null);
 			drawObject(canvas);
 			
-			Screen1.bOne.getHandler().post(new Runnable() {
+			Screen1.bOne.getHandler().post(new Runnable() { //make the button invisible because we're on screen2 now
 			    public void run() {
 			        Screen1.bOne.setVisibility(View.GONE);
 			    }
 			});
 		}
 		
-		if (touchX < width/2 && touchY > 7*height/8 && centerx2 < width/2 + width) { //Boundaries for shift right virtual space
+		if ((touchX < width/2 && touchY > 7*height/8 && centerx2 < width/2 + width) || GameVariables.swipe == 2) { //Boundaries for shift right virtual space
+			
+			if (centerx2 >= width/2 + width) GameVariables.swipe = 0;
+			
 			shiftRight();
 			drawBackground(canvas);
 			canvas.drawBitmap(testScaled, centerx2-testScaled.getWidth()/2, 0, null);
 			drawObject(canvas);
 			
-			Screen1.bOne.getHandler().post(new Runnable() {
+			Screen1.bOne.getHandler().post(new Runnable() {//make the button visible because we're on screen1 now
 			    public void run() {
 			        Screen1.bOne.setVisibility(View.VISIBLE);
 			    }
@@ -205,8 +211,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 		
 		
 		
-		canvas.drawText("Screen1", centerx, height/3, paintText);
-		canvas.drawText("Screen2", centerx2, height/3, paintText);
+		canvas.drawText("Screen " + Integer.toString(GameVariables.swipe), centerx, height/3, paintText);
+		canvas.drawText("Screen " + Integer.toString(GameVariables.swipe), centerx2, height/3, paintText);
 	
 	}
 	
