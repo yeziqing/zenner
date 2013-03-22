@@ -19,6 +19,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Handler;
 import android.os.Message;
+import android.os.SystemClock;
 import android.os.Vibrator;
 import android.view.Display;
 import android.view.MotionEvent;
@@ -30,6 +31,8 @@ import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.Random;
 
 
@@ -40,8 +43,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	private Display mDisplay;
 	private WindowManager mWindowManager;
 
-	public int width, height;
-	public int x, y; 
+	final public int width, height;
 
 	private SurfaceHolder holder;
 	public static GameLoopThread gameLoopThread;
@@ -62,6 +64,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	private Paint middle2 = new Paint();
 	private Paint paintBG = new Paint();
 	private Paint paintText = new Paint();
+	
+	public static Bitmap test;
+	public static Bitmap testScaled;
 
 
 	
@@ -83,9 +88,11 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 		paintText.setColor(Color.BLACK);
 		paintText.setTextAlign(Align.CENTER);
 		
-		BitmapFactory.Options options=new BitmapFactory.Options();
-		options.inSampleSize = 8;
+		//BitmapFactory.Options options=new BitmapFactory.Options();
+		//options.inSampleSize = 8;
 		
+		test = BitmapFactory.decodeResource(getResources(), R.drawable.mainfile);
+		testScaled = Bitmap.createScaledBitmap(test, width, height, true);
 		
 		
 //		ship = BitmapFactory.decodeResource(getResources(), R.drawable.shipfront);
@@ -94,7 +101,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 		
 		//gameLoopThread = new GameLoopThread(this);
 		
-		SurfaceHolder holder = getHolder();
+	    holder = getHolder();
         holder.addCallback(this);
 		//holder = getHolder();
 		//holder.addCallback(new Callback() {});
@@ -120,7 +127,12 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	public void surfaceCreated(SurfaceHolder holder) {
 
 		gameLoopThread.setRunning(true);
-		gameLoopThread.start();
+		try { 
+			gameLoopThread.start();
+		} catch (IllegalThreadStateException e) {
+			
+		}
+		
 
 	}
 
@@ -139,21 +151,44 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	@Override
 	protected void onDraw(Canvas canvas) {	
 		
-		if (touchX > width/2 && touchY > 6*height/8) {
+		//Conditions for shifting:
+		//1. touch coordinates must be on the parameter specified
+		//2. transitioning hasn't arrived at destination coordinates yet
+		if (touchX > width/2 && touchY > 7*height/8 && centerx > width/2 - width) { //Boundaries for shift left virtual space
 			shiftLeft();
 			drawBackground(canvas);
+			canvas.drawBitmap(testScaled, centerx2-testScaled.getWidth()/2, 0, null);
 			drawObject(canvas);
+			
+			Screen1.bOne.getHandler().post(new Runnable() {
+			    public void run() {
+			        Screen1.bOne.setVisibility(View.GONE);
+			    }
+			});
 		}
 		
-		if (touchX < width/2 && touchY > 6*height/8) {
+		if (touchX < width/2 && touchY > 7*height/8 && centerx2 < width/2 + width) { //Boundaries for shift right virtual space
 			shiftRight();
 			drawBackground(canvas);
+			canvas.drawBitmap(testScaled, centerx2-testScaled.getWidth()/2, 0, null);
 			drawObject(canvas);
+			
+			Screen1.bOne.getHandler().post(new Runnable() {
+			    public void run() {
+			        Screen1.bOne.setVisibility(View.VISIBLE);
+			    }
+			});
 		}
 		
-		else {
+		
+		
+		else { //draw the normal state, where no action is happening, just have the background stuff
 			drawBackground(canvas);
+			canvas.drawBitmap(testScaled, centerx2-testScaled.getWidth()/2, 0, null);// draw the hand
 			drawObject(canvas);
+			if (GameVariables.listener_bOne == 1) { //Demonstrating button click actions in surface view. Draw a black square on click.
+				canvas.drawRect(centerx+0, centery - 300, centerx+100, centery - 200, paintText);
+			}
 		}
 	}
 	
@@ -180,6 +215,40 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 		
 	}
 	
+	
+	public void fakeTouch( View view) {
+		view.setOnTouchListener(new OnTouchListener()
+		{
+		    public boolean onTouch(View v, MotionEvent event)
+		    {
+		        
+
+		        return true;
+		    }
+		});
+
+
+		// Obtain MotionEvent object
+		long downTime = SystemClock.uptimeMillis();
+		long eventTime = SystemClock.uptimeMillis() + 100;
+		float x = 0.0f;
+		float y = 0.0f;
+		// List of meta states found here: developer.android.com/reference/android/view/KeyEvent.html#getMetaState()
+		int metaState = 0;
+		MotionEvent motionEvent = MotionEvent.obtain(
+		    downTime, 
+		    eventTime, 
+		    MotionEvent.ACTION_UP, 
+		    x, 
+		    y, 
+		    metaState
+		);
+
+		// Dispatch touch event to view
+		view.dispatchTouchEvent(motionEvent);
+	}
+
+	
 	public boolean onTouchEvent(MotionEvent event) {
 		// get touched coordinates
 		//GameVariables.touchY = (int) event.getY();
@@ -194,7 +263,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	}
 
 	private void shiftLeft() {
-		int speed = width/4;
+		int speed = width/8;
 		if (centerx > width/2 - width) {
 			centerx-= speed;
 			centerx2-= speed;
@@ -204,7 +273,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	}
 	
 	private void shiftRight() {
-		int speed = width/4;
+		int speed = width/8;
 		if (centerx2 < width/2 + width) {
 			centerx+= speed;
 			centerx2+= speed;

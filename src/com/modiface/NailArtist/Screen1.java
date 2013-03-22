@@ -1,20 +1,21 @@
 package com.modiface.NailArtist;
 
 import android.app.Activity;
-import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View.OnClickListener;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Toast;
+import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
+import android.widget.RelativeLayout.LayoutParams;
 
 public class Screen1 extends Activity{
 	public boolean paused = false;
+	public static Button bOne;
 	
-
+	GameView gameView;//extends SurfaceView   
+	FrameLayout game;// Sort of "holder" for everything we are placing  
+	RelativeLayout GameButtons;//Holder for the buttons  
 	
 	
 	@Override
@@ -33,17 +34,8 @@ public class Screen1 extends Activity{
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         
 		// TODO Auto-generated method stub
-				super.onStart();
-				int w = getWindowManager().getDefaultDisplay().getWidth();
-		        int h = getWindowManager().getDefaultDisplay().getHeight();
-		        
-		        GameVariables.isRunning = 1;
-		        GameView gameView;
-		        gameView = new GameView (this, w, h);
-		        
-		        
-		        
-		        setContentView(gameView);
+				//super.onStart();
+	
 		
         
 	}
@@ -52,6 +44,57 @@ public class Screen1 extends Activity{
 	@Override
 	protected void onStart() {
 		super.onStart();
+		int w = getWindowManager().getDefaultDisplay().getWidth();
+        int h = getWindowManager().getDefaultDisplay().getHeight();
+        
+        GameVariables.isRunning = 1;
+        //GameView gameView;
+        gameView = new GameView (this, w, h);
+        game = new FrameLayout(this);  
+        GameButtons = new RelativeLayout(this); 
+        
+        bOne = new Button(this);  
+        bOne.setText("Paint!");  
+        bOne.setId(996915094);
+        
+        RelativeLayout.LayoutParams params = new LayoutParams(  
+        	RelativeLayout.LayoutParams.FILL_PARENT,  
+        	RelativeLayout.LayoutParams.FILL_PARENT);  
+        GameButtons.setLayoutParams(params); 
+               
+        
+        
+        RelativeLayout.LayoutParams b1 = new LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT); 
+        b1.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);  
+        b1.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
+        bOne.setLayoutParams(b1); 
+        
+        GameButtons.addView(bOne);
+        game.addView(gameView);  
+        game.addView(GameButtons);  
+        setContentView(game);
+        
+        gameView.setFocusable(true);
+        gameView.setFocusableInTouchMode(true);
+        game.setFocusable(true);
+        game.setFocusableInTouchMode(true);
+        
+        
+	   	bOne.setOnClickListener(new View.OnClickListener() { //toggle button
+	         public void onClick(View v) {
+	        	 
+	        	 if (GameVariables.listener_bOne == 0) GameVariables.listener_bOne = 1;
+	        	 else {GameVariables.listener_bOne = 0; };
+	        	// gameView.requestFocus();
+	        	// game.requestFocus();
+	         }
+	     });
+        
+        
+        //setContentView(gameView);
+	}
+	
+	public void refocus (View v) {
 		
 	}
 
@@ -85,10 +128,10 @@ public class Screen1 extends Activity{
     	//synchronized (GameView.gameLoopThread) {    
           //  GameView.gameLoopThread.notify();
         //}
-    	
+    	GameView.gameLoopThread.onResume();
     	GameView.gameLoopThread.setRunning(true);
     	
-    	GameView.gameLoopThread.onResume();
+    	
     	
     }
 	

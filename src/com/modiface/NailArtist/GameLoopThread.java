@@ -50,7 +50,8 @@ public class GameLoopThread extends Thread {
                            c = view.getHolder().lockCanvas();
                            synchronized (view.getHolder()) {
                         	   view.onDraw(c);
-                        	  
+                        	   
+                        	 
                         	   //view.drawBackground(c);
 
                         		   
