@@ -304,6 +304,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 		
 			case 1: //if we're on screen 1, set all screen 2 buttons invisible and set all screen1 buttons visible
 				
+				//The following are screen 2 buttons. Make them invisible
 				Screen1.bOne.getHandler().post(new Runnable() { //make the button invisible because we're on screen1 now
 				    public void run() {
 				        Screen1.bOne.setVisibility(View.GONE);
@@ -319,40 +320,78 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 				        Screen1.bApplyAll.setVisibility(View.GONE);
 				    }
 				});
-				Screen1.bHand.getHandler().post(new Runnable() {//make the button visible because we're on screen2 now
+				Screen1.bHand.getHandler().post(new Runnable() {
 				    public void run() {
 				        Screen1.bHand.setVisibility(View.GONE);
 				    }
 				});
-				Screen1.bNailSticker.getHandler().post(new Runnable() {//make the button visible because we're on screen2 now
+				Screen1.bNailSticker.getHandler().post(new Runnable() {
 				    public void run() {
 				        Screen1.bNailSticker.setVisibility(View.GONE);
 				    }
 				});
-				Screen1.bNailSet.getHandler().post(new Runnable() {//make the button visible because we're on screen2 now
+				Screen1.bNailSet.getHandler().post(new Runnable() {
 				    public void run() {
 				        Screen1.bNailSet.setVisibility(View.GONE);
 				    }
 				});
-				Screen1.bNailPolish.getHandler().post(new Runnable() {//make the button visible because we're on screen2 now
+				Screen1.bNailPolish.getHandler().post(new Runnable() {
 				    public void run() {
 				        Screen1.bNailPolish.setVisibility(View.GONE);
 				    }
 				});
-				Screen1.bRings.getHandler().post(new Runnable() {//make the button visible because we're on screen2 now
+				Screen1.bRings.getHandler().post(new Runnable() {
 				    public void run() {
 				        Screen1.bRings.setVisibility(View.GONE);
 				    }
 				});
-				Screen1.bGems.getHandler().post(new Runnable() {//make the button visible because we're on screen2 now
+				Screen1.bGems.getHandler().post(new Runnable() {
 				    public void run() {
 				        Screen1.bGems.setVisibility(View.GONE);
 				    }
 				});
+				
+				//The following are screen 1 buttons, make them visible
+				Screen1.bFiler.getHandler().post(new Runnable() {
+				    public void run() {
+				        Screen1.bFiler.setVisibility(View.VISIBLE);
+				    }
+				});
+				Screen1.bScissors.getHandler().post(new Runnable() {
+				    public void run() {
+				        Screen1.bScissors.setVisibility(View.VISIBLE);
+				    }
+				});
+				Screen1.bSkin.getHandler().post(new Runnable() {
+				    public void run() {
+				        Screen1.bSkin.setVisibility(View.VISIBLE);
+				    }
+				});
+				
+				
 				break;
 				
 				
 			case 2:
+				
+				//The following are screen 1 buttons. Make them invisible
+				Screen1.bFiler.getHandler().post(new Runnable() {
+				    public void run() {
+				        Screen1.bFiler.setVisibility(View.GONE);
+				    }
+				});
+				Screen1.bScissors.getHandler().post(new Runnable() {
+				    public void run() {
+				        Screen1.bScissors.setVisibility(View.GONE);
+				    }
+				});
+				Screen1.bSkin.getHandler().post(new Runnable() {
+				    public void run() {
+				        Screen1.bSkin.setVisibility(View.GONE);
+				    }
+				});
+				
+				//The following are screen 2 buttons. Make them visible
 				Screen1.bOne.getHandler().post(new Runnable() {//make the button visible because we're on screen2 now
 				    public void run() {
 				        Screen1.bOne.setVisibility(View.VISIBLE);
@@ -398,6 +437,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 				        Screen1.bGems.setVisibility(View.VISIBLE);
 				    }
 				});
+				
+				
+				
+				
 				break;
 			
 		}

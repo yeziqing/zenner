@@ -27,11 +27,11 @@ public class Screen1 extends Activity implements OnClickListener{
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
     private GestureDetector gestureDetector;
     View.OnTouchListener gestureListener;
-	
-	
-	
-	public boolean paused = false;
 
+
+    //screen 1 buttons
+    public static ImageButton bSkin, bFiler, bScissors;
+    
 	//screen 2 buttons
 	public static ImageButton bOne, bUndo, bApplyAll, bHand;
 	public static ImageButton bNailSticker, bNailSet, bNailPolish, bRings, bGems;
@@ -85,6 +85,29 @@ public class Screen1 extends Activity implements OnClickListener{
         game = new FrameLayout(this);  
         GameButtons = new RelativeLayout(this); 
         
+        
+        
+        
+        //SCREEN 1
+        bFiler = new ImageButton(this);
+        Bitmap bmbFiler = BitmapFactory.decodeResource(getResources(), R.drawable.icon_filer_squished_55);
+        bFiler.setImageBitmap(bmbFiler);
+        bFiler.setBackgroundColor(Color.TRANSPARENT);
+        bFiler.setId(7845126);
+        
+        bScissors = new ImageButton(this);
+        Bitmap bmbScissors = BitmapFactory.decodeResource(getResources(), R.drawable.icon_scissors_55);
+        bScissors.setImageBitmap(bmbScissors);
+        bScissors.setBackgroundColor(Color.TRANSPARENT);
+        bFiler.setId(3214871);
+        
+        bSkin = new ImageButton(this);
+        Bitmap bmbSkin = BitmapFactory.decodeResource(getResources(), R.drawable.icon_skin_55);
+        bSkin.setImageBitmap(bmbSkin);
+        bSkin.setBackgroundColor(Color.TRANSPARENT);
+        bSkin.setId(99887711);
+        
+        //SCREEN 2
         //instantiate buttons and allocate their image resources and ID's
         bOne = new ImageButton(this);      
         Bitmap bmbOne = BitmapFactory.decodeResource(getResources(), R.drawable.icon_clear_all_55);
@@ -147,6 +170,22 @@ public class Screen1 extends Activity implements OnClickListener{
         GameButtons.setLayoutParams(params); 
                
         
+        //layout rules for bFiler
+        RelativeLayout.LayoutParams lrbFiler = new LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT); 
+        lrbFiler.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);  
+        lrbFiler.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+        bFiler.setLayoutParams(lrbFiler);
+        
+        RelativeLayout.LayoutParams lrbScissors = new LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT); 
+        lrbScissors.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
+        lrbScissors.addRule(RelativeLayout.LEFT_OF, bFiler.getId());
+        bScissors.setLayoutParams(lrbScissors);
+        
+        RelativeLayout.LayoutParams lrbSkin = new LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT); 
+        lrbSkin.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
+        lrbSkin.addRule(RelativeLayout.RIGHT_OF, bFiler.getId());
+        bSkin.setLayoutParams(lrbSkin);
+        
         //layout rules for CLEAR ALL (bOne)
         RelativeLayout.LayoutParams lrbOne = new LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT); 
         lrbOne.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);  
@@ -202,7 +241,13 @@ public class Screen1 extends Activity implements OnClickListener{
         lrbGems.addRule(RelativeLayout.ABOVE, bRings.getId());
         bGems.setLayoutParams(lrbGems);
         
-        //add the buttons to the view
+        
+        //add SCREEN 1 buttons to the view
+        GameButtons.addView(bFiler);
+        GameButtons.addView(bScissors);
+        GameButtons.addView(bSkin);
+        
+        //add SCREEN 2 buttons to the view
         GameButtons.addView(bOne);
         GameButtons.addView(bUndo);
         GameButtons.addView(bApplyAll);
@@ -338,7 +383,6 @@ public class Screen1 extends Activity implements OnClickListener{
 	    });
         
         
-        //setContentView(gameView);
 	}
 	
 	private void initializeButtons() {
