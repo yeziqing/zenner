@@ -1,6 +1,10 @@
 package com.modiface.NailArtist;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
@@ -11,6 +15,7 @@ import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 
@@ -26,7 +31,10 @@ public class Screen1 extends Activity implements OnClickListener{
 	
 	
 	public boolean paused = false;
-	public static Button bOne;
+
+	//screen 2 buttons
+	public static ImageButton bOne, bUndo, bApplyAll, bHand;
+	public static ImageButton bNailSticker, bNailSet, bNailPolish, bRings, bGems;
 	
 	GameView gameView;//extends SurfaceView   
 	FrameLayout game;// Sort of "holder" for everything we are placing  
@@ -62,7 +70,7 @@ public class Screen1 extends Activity implements OnClickListener{
 		int w = getWindowManager().getDefaultDisplay().getWidth();
         int h = getWindowManager().getDefaultDisplay().getHeight();
         
-        
+      
         // Gesture detection
         gestureDetector = new GestureDetector(this, new MyGestureDetector());
         gestureListener = new View.OnTouchListener() {
@@ -77,23 +85,134 @@ public class Screen1 extends Activity implements OnClickListener{
         game = new FrameLayout(this);  
         GameButtons = new RelativeLayout(this); 
         
-        bOne = new Button(this);  
-        bOne.setText("Paint!");  
+        //instantiate buttons and allocate their image resources and ID's
+        bOne = new ImageButton(this);      
+        Bitmap bmbOne = BitmapFactory.decodeResource(getResources(), R.drawable.icon_clear_all_55);
+        bOne.setImageBitmap(bmbOne);
+        bOne.setBackgroundColor(Color.TRANSPARENT);
         bOne.setId(996915094);
         
+        bUndo = new ImageButton(this);      
+        Bitmap bmbUndo = BitmapFactory.decodeResource(getResources(), R.drawable.icon_undo_55);
+        bUndo.setImageBitmap(bmbUndo);
+        bUndo.setBackgroundColor(Color.TRANSPARENT);
+        bUndo.setId(5464645);
+        
+        bApplyAll = new ImageButton(this);      
+        Bitmap bmbApplyAll = BitmapFactory.decodeResource(getResources(), R.drawable.icon_apply_all_55);
+        bApplyAll.setImageBitmap(bmbApplyAll);
+        bApplyAll.setBackgroundColor(Color.TRANSPARENT);
+        bApplyAll.setId(5464852);
+        
+        bHand = new ImageButton(this);      
+        Bitmap bmbHand = BitmapFactory.decodeResource(getResources(), R.drawable.icon_hand_55);
+        bHand.setImageBitmap(bmbHand);
+        bHand.setBackgroundColor(Color.TRANSPARENT);
+        bHand.setId(21344764);
+        
+        bNailSticker = new ImageButton(this);
+        final Bitmap bmbNailSticker = BitmapFactory.decodeResource(getResources(), R.drawable.icon_nail_stickers_55);
+        bNailSticker.setImageBitmap(bmbNailSticker);
+        bNailSticker.setBackgroundColor(Color.TRANSPARENT);
+        bNailSticker.setId(1158744);
+        
+        bNailSet = new ImageButton(this);
+        Bitmap bmbNailSet = BitmapFactory.decodeResource(getResources(), R.drawable.icon_nail_set_55);
+        bNailSet.setImageBitmap(bmbNailSet);
+        bNailSet.setBackgroundColor(Color.TRANSPARENT);
+        bNailSet.setId(9877443);
+        
+        bNailPolish = new ImageButton(this);
+        Bitmap bmbNailPolish = BitmapFactory.decodeResource(getResources(), R.drawable.icon_nail_polish_55);
+        bNailPolish.setImageBitmap(bmbNailPolish);
+        bNailPolish.setBackgroundColor(Color.TRANSPARENT);
+        bNailPolish.setId(8879875);
+        
+        bRings = new ImageButton(this);
+        Bitmap bmbRings = BitmapFactory.decodeResource(getResources(), R.drawable.icon_rings_55);
+        bRings.setImageBitmap(bmbRings);
+        bRings.setBackgroundColor(Color.TRANSPARENT);
+        bRings.setId(5512878);
+        
+        bGems = new ImageButton(this);
+        final Bitmap bmbGems = BitmapFactory.decodeResource(getResources(), R.drawable.icon_gems_55);
+        bGems.setImageBitmap(bmbGems);
+        bGems.setBackgroundColor(Color.TRANSPARENT);
+        bGems.setId(6657332);
+
+        //intialize relative layout parameters
         RelativeLayout.LayoutParams params = new LayoutParams(  
         	RelativeLayout.LayoutParams.FILL_PARENT,  
         	RelativeLayout.LayoutParams.FILL_PARENT);  
         GameButtons.setLayoutParams(params); 
                
         
+        //layout rules for CLEAR ALL (bOne)
+        RelativeLayout.LayoutParams lrbOne = new LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT); 
+        lrbOne.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);  
+        lrbOne.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
+        bOne.setLayoutParams(lrbOne);
         
-        RelativeLayout.LayoutParams b1 = new LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT); 
-        b1.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);  
-        b1.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
-        bOne.setLayoutParams(b1); 
+        //layout rules for bUndo
+        RelativeLayout.LayoutParams lrbUndo = new LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT); 
+        lrbUndo.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);  
+        lrbUndo.addRule(RelativeLayout.BELOW, bOne.getId());
+        bUndo.setLayoutParams(lrbUndo);
         
+        //layout rules for bApplyAll
+        RelativeLayout.LayoutParams lrbApplyAll = new LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT); 
+        lrbApplyAll.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);  
+        lrbApplyAll.addRule(RelativeLayout.BELOW, bUndo.getId());
+        bApplyAll.setLayoutParams(lrbApplyAll);
+        
+        //layout rules for bHand
+        RelativeLayout.LayoutParams lrbHand = new LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT); 
+        lrbHand.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);  
+        lrbHand.addRule(RelativeLayout.BELOW, bApplyAll.getId());
+        bHand.setLayoutParams(lrbHand);
+        
+        //layout rules for bNailSticker
+        RelativeLayout.LayoutParams lrbNailSticker = new LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT); 
+        lrbNailSticker.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);  
+        lrbNailSticker.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+        bNailSticker.setLayoutParams(lrbNailSticker);
+        
+        //layout rules for bNailSet
+        RelativeLayout.LayoutParams lrbNailSet = new LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT); 
+        lrbNailSet.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+        lrbNailSet.addRule(RelativeLayout.ABOVE, bNailSticker.getId());
+        bNailSet.setLayoutParams(lrbNailSet);
+        
+        //layout rules for bNailPolish
+        RelativeLayout.LayoutParams lrbNailPolish = new LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT); 
+        lrbNailPolish.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
+        lrbNailPolish.addRule(RelativeLayout.LEFT_OF, bNailSticker.getId());
+        bNailPolish.setLayoutParams(lrbNailPolish);
+        
+        //layout rules for bRings
+        RelativeLayout.LayoutParams lrbRings = new LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT); 
+        lrbRings.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
+        lrbRings.addRule(RelativeLayout.RIGHT_OF, bNailSticker.getId());
+        bRings.setLayoutParams(lrbRings);
+        
+        //layout rules for bGems
+        RelativeLayout.LayoutParams lrbGems = new LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT); 
+        //lrbGems.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
+        lrbGems.addRule(RelativeLayout.RIGHT_OF, bNailSticker.getId());
+        lrbGems.addRule(RelativeLayout.ABOVE, bRings.getId());
+        bGems.setLayoutParams(lrbGems);
+        
+        //add the buttons to the view
         GameButtons.addView(bOne);
+        GameButtons.addView(bUndo);
+        GameButtons.addView(bApplyAll);
+        GameButtons.addView(bHand);
+        GameButtons.addView(bNailSticker);
+        GameButtons.addView(bNailSet);
+        GameButtons.addView(bNailPolish);
+        GameButtons.addView(bRings);
+        GameButtons.addView(bGems);
+        
         game.addView(gameView);  
         game.addView(GameButtons); 
         
@@ -101,6 +220,7 @@ public class Screen1 extends Activity implements OnClickListener{
         gameView.setOnClickListener(Screen1.this); 
         gameView.setOnTouchListener(gestureListener);
         
+        //getWindow().setFormat(PixelFormat.RGBA_8888); 
         setContentView(game);
         
         // NSIN: not sure if need these
@@ -110,18 +230,143 @@ public class Screen1 extends Activity implements OnClickListener{
         game.setFocusableInTouchMode(true);
         
         
-	   	bOne.setOnClickListener(new View.OnClickListener() { //toggle button
+        initializeButtons();
+        
+	   	bOne.setOnClickListener(new View.OnClickListener() { //toggle CLEAR ALL button
 	         public void onClick(View v) {
-	        	 
 	        	 if (GameVariables.listener_bOne == 0) GameVariables.listener_bOne = 1;
 	        	 else {GameVariables.listener_bOne = 0; };
-	        	// gameView.requestFocus();
-	        	// game.requestFocus();
+
 	         }
-	     });
+	    });
+	   	
+	   	bHand.setOnClickListener(new View.OnClickListener() { //Shift Right to goto screen 1
+	         public void onClick(View v) {
+	        	 GameVariables.swipe = 2;
+	         }
+	    });
+	   	
+	   	bNailSticker.setOnClickListener(new View.OnClickListener() {
+	         public void onClick(View v) {
+	        	if (GameVariables.listener_bNailSticker == 0) {
+	        		GameVariables.resetTogglables();
+	        		GameVariables.listener_bNailSticker = 1;
+	        		//bNailSticker.setImageResource(R.drawable.icon_nail_stickers_55_pressed);
+	        		resetButtonAlpha();
+	        		bNailSticker.setAlpha(50);
+	        		GameVariables.showBar = true;
+	        	}
+	        	else if (GameVariables.listener_bNailSticker == 1){
+	        		GameVariables.listener_bNailSticker = 0; 
+	        		resetButtonAlpha();
+	        		GameVariables.showBar = false;
+	        	}
+
+	         }
+	    });
+	   	
+	   	bNailPolish.setOnClickListener(new View.OnClickListener() {
+	         public void onClick(View v) {
+	        	if (GameVariables.listener_bNailPolish == 0) {
+	        		GameVariables.resetTogglables();
+	        		GameVariables.listener_bNailPolish = 1;
+	        		resetButtonAlpha();
+	        		bNailPolish.setAlpha(50);
+	        		GameVariables.showBar = true;
+	        	}
+	        	else if (GameVariables.listener_bNailPolish == 1){
+	        		GameVariables.listener_bNailPolish = 0; 
+	        		resetButtonAlpha();
+	        		GameVariables.showBar = false;
+	        	}
+
+	         }
+	    });
+	   	
+	   	bNailSet.setOnClickListener(new View.OnClickListener() {
+	         public void onClick(View v) {
+	        	if (GameVariables.listener_bNailSet == 0) {
+	        		GameVariables.resetTogglables();
+	        		GameVariables.listener_bNailSet = 1;
+	        		resetButtonAlpha();
+	        		bNailSet.setAlpha(50);
+	        		GameVariables.showBar = true;
+	        	}
+	        	else if (GameVariables.listener_bNailSet == 1){
+	        		GameVariables.listener_bNailSet = 0; 
+	        		resetButtonAlpha();
+	        		GameVariables.showBar = false;
+	        	}
+
+	         }
+	    });
+	   	
+	   	bGems.setOnClickListener(new View.OnClickListener() {
+	         public void onClick(View v) {
+	        	if (GameVariables.listener_bGems == 0) {
+	        		GameVariables.resetTogglables();
+	        		GameVariables.listener_bGems = 1;
+	        		resetButtonAlpha();
+	        		bGems.setAlpha(50);
+	        		GameVariables.showBar = true;
+	        	}
+	        	else if (GameVariables.listener_bGems == 1){
+	        		GameVariables.listener_bGems = 0; 
+	        		resetButtonAlpha();
+	        		GameVariables.showBar = false;
+	        	}
+
+	         }
+	    });
+	   	
+	   	bRings.setOnClickListener(new View.OnClickListener() {
+	         public void onClick(View v) {
+	        	if (GameVariables.listener_bRings == 0) {
+	        		GameVariables.resetTogglables();
+	        		GameVariables.listener_bRings = 1;
+	        		resetButtonAlpha();
+	        		bRings.setAlpha(50);
+	        		GameVariables.showBar = true;
+	        	}
+	        	else if (GameVariables.listener_bRings == 1){
+	        		GameVariables.listener_bRings = 0; 
+	        		resetButtonAlpha();
+	        		GameVariables.showBar = false;
+	        	}
+
+	         }
+	    });
         
         
         //setContentView(gameView);
+	}
+	
+	private void initializeButtons() {
+		
+		//TODO Make screen1 buttons visible
+
+		// Make screen2 buttons INVISIBLE
+		bOne.setVisibility(View.GONE);
+		bUndo.setVisibility(View.GONE);
+		bApplyAll.setVisibility(View.GONE);
+		bHand.setVisibility(View.GONE);
+		bNailSticker.setVisibility(View.GONE);
+		bNailSet.setVisibility(View.GONE);
+		bNailPolish.setVisibility(View.GONE);
+		bRings.setVisibility(View.GONE);
+		bGems.setVisibility(View.GONE);
+	}
+	
+	private void resetButtonAlpha() {
+		bOne.setAlpha(255);
+		bUndo.setAlpha(255);
+		bApplyAll.setAlpha(255);
+		bHand.setAlpha(255);
+		bNailSticker.setAlpha(255);
+		bNailSet.setAlpha(255);
+		bNailPolish.setAlpha(255);
+		bRings.setAlpha(255);
+		bGems.setAlpha(255);
 	}
 	
 	public void refocus (View v) {
