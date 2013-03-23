@@ -50,17 +50,11 @@ public class MainActivity extends Activity{
 		startActivity(intentStart);
     }
 	
-
 	@Override
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
 	}
-
-
-
-
-
 
 	@Override
 	protected void onResume() {
@@ -68,11 +62,6 @@ public class MainActivity extends Activity{
 		super.onResume();
 		//recreate();
 	}
-
-
-
-
-
 
 	@Override
 	protected void onStop() {

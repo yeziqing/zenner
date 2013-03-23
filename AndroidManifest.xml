@@ -12,10 +12,12 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme" 
+        >
         <activity
             android:name="com.modiface.NailArtist.MainActivity"
             android:label="@string/app_name" 
+            android:screenOrientation="portrait" 
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,6 +30,7 @@
         <activity
             android:name=".Screen1"
             android:label="Screen1" 
+            android:screenOrientation="portrait" 
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
         </activity>
         

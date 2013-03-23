@@ -37,7 +37,6 @@ import android.widget.Toast;
 
 import java.util.Random;
 
-
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	
 	private Context mContext;
@@ -60,8 +59,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	public static int touchX;
 	public static int touchY;
 	
-	public static boolean shifting = false;
-
 	private Paint middle = new Paint();
 	private Paint middle2 = new Paint();
 	private Paint paintBG = new Paint();
@@ -204,8 +201,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	}
 	
 	private void drawBar(Canvas canvas) {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub	
 		if (GameVariables.showBar == true) canvas.drawBitmap(bg_bar_scaled, centerx2-width/2, 4*height/7, null);
 	}
 

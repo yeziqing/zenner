@@ -1,6 +1,8 @@
 package com.modiface.NailArtist;
 
+
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -9,6 +11,8 @@ import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.LayoutInflater.Filter;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,6 +21,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 import android.widget.RelativeLayout.LayoutParams;
 
 public class Screen1 extends Activity implements OnClickListener{
@@ -511,13 +516,42 @@ public class Screen1 extends Activity implements OnClickListener{
 
     }
 
-
+	//Unimplemented method from Gesture thingy
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		//Filter f = (Filter) v.getTag();
         //FilterFullscreenActivity.show(this, input, f);
 		
+	}
+	
+	//Elipses Inflater
+	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		
+		menu.clear();
+		menu.add(0, 0, 0, "ITEM 0");
+		menu.add(0, 1, 1, "ITEM 1");
+		menu.add(0, 2, 2, "ITEM 2");
+		menu.add(0, 3, 3, "ITEM 3");
+		return super.onPrepareOptionsMenu(menu);
+	}
+	
+	//Elipses handler
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		switch (item.getItemId()) {
+		case 0:
+			break;
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		}
+		return true;
 	}
 
 
