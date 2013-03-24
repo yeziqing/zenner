@@ -317,14 +317,14 @@ public class Screen1 extends Activity implements OnClickListener{
 	   	
 	   	bNailPolish.setOnClickListener(new View.OnClickListener() {
 	         public void onClick(View v) {
-	        	if (GameVariables.listener_bNailPolish == 0) {
+	        	if (GameVariables.listener_bNailPolish == 0 && GameVariables.swipe == 0) {
 	        		GameVariables.resetTogglables();
 	        		GameVariables.listener_bNailPolish = 1;
 	        		resetButtonAlpha();
 	        		bNailPolish.setAlpha(50);
 	        		GameVariables.showBar = true;
 	        	}
-	        	else if (GameVariables.listener_bNailPolish == 1){
+	        	else if (GameVariables.listener_bNailPolish == 1 && GameVariables.swipe == 0){
 	        		GameVariables.listener_bNailPolish = 0; 
 	        		resetButtonAlpha();
 	        		GameVariables.showBar = false;
@@ -473,6 +473,7 @@ public class Screen1 extends Activity implements OnClickListener{
     protected void onStop() {
         super.onStop();
         GameView.gameLoopThread.setRunning(false);
+        finish();
         System.gc();
     }
 	
