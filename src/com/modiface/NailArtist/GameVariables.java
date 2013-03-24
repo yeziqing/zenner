@@ -22,11 +22,11 @@ public class GameVariables {
 	protected static int listener_bGems = 0;
 	
 	
-	//togglable's screens
-		//nail polish
-		protected static int menu_id_nail_polish = 1;
-	
-	
+	//togglable's screens: tells you which page it is
+		protected static int menu_id_nail_polish = 1; //nail polish
+		protected static int menu_id_nail_set = 1; // nail hubcaps/sets
+		protected static int menu_id_nail_stickers = 1; //nail stickers
+		
 	public static int swipe = 0; //0 if user is not swiping | 1 if swiping left was detected | 2 if swiping right was detected
 	
 

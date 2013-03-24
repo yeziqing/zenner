@@ -104,7 +104,7 @@ public class Screen1 extends Activity implements OnClickListener{
         Bitmap bmbScissors = BitmapFactory.decodeResource(getResources(), R.drawable.icon_scissors_55);
         bScissors.setImageBitmap(bmbScissors);
         bScissors.setBackgroundColor(Color.TRANSPARENT);
-        bFiler.setId(3214871);
+        bScissors.setId(3214871);
         
         bSkin = new ImageButton(this);
         Bitmap bmbSkin = BitmapFactory.decodeResource(getResources(), R.drawable.icon_skin_55);

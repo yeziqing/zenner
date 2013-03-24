@@ -49,11 +49,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	private SurfaceHolder holder;
 	public static GameLoopThread gameLoopThread;
 
-	private static int centerx;
+	private static int centerx; //everything on screen1 is drawn relative to centerx's value
 	private static int centery;
 	
-	private static int centerx2;
-	private static int centery2;
+	private static int centerx2;//everything on screen2 is drawn relative to centerx's value
 	
 	public static int screenID = 0;
 	public static int touchX;
@@ -99,12 +98,15 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 		options.inScaled = false;
 		options.inDither = false;
 		options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-		//options.inSampleSize = 1;
 		
+		BitmapFactory.Options options2 = new BitmapFactory.Options();
+		options2.inScaled = false;
+		options2.inDither = false;
+		options2.inSampleSize = 2;
 		
-		//bg_pink_screen1 =  BitmapFactory.decodeResource(getResources(), R.drawable.bg_pink_screen1, options);
-		bg_pink_screen1 =  BitmapFactory.decodeResource(getResources(), R.drawable.hand1, options);
+		//bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.bg_pink_screen1, options);
 		//bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.bg_pink_screen2, options);
+		bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1, options);
 		bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2, options);
 		
 		
@@ -117,26 +119,26 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 		bg_bar = BitmapFactory.decodeResource(getResources(), R.drawable.bg_bar, options);
 		bg_bar_scaled = Bitmap.createScaledBitmap(bg_bar, width, height/6, true);
 
-		bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.color1, options);
+		bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.color1, options); //this is the gradient layer
 		
 		//bar menus
 			//nail polish
-			bg_bar_polish_1 = BitmapFactory.decodeResource(getResources(), R.drawable.bg_bar_polish_1, options);
+			bg_bar_polish_1 = BitmapFactory.decodeResource(getResources(), R.drawable.bg_bar_polish_1, options2);
 			bg_bar_polish_1_scaled = Bitmap.createScaledBitmap(bg_bar_polish_1, width, height/6, true);
 			
-			bg_bar_polish_2 = BitmapFactory.decodeResource(getResources(), R.drawable.bg_bar_polish_2, options);
+			bg_bar_polish_2 = BitmapFactory.decodeResource(getResources(), R.drawable.bg_bar_polish_2, options2);
 			bg_bar_polish_2_scaled = Bitmap.createScaledBitmap(bg_bar_polish_2, width, height/6, true);
 			
-			bg_bar_polish_3 = BitmapFactory.decodeResource(getResources(), R.drawable.bg_bar_polish_3, options);
+			bg_bar_polish_3 = BitmapFactory.decodeResource(getResources(), R.drawable.bg_bar_polish_3, options2);
 			bg_bar_polish_3_scaled = Bitmap.createScaledBitmap(bg_bar_polish_3, width, height/6, true);
 			
-			bg_bar_polish_4 = BitmapFactory.decodeResource(getResources(), R.drawable.bg_bar_polish_4, options);
+			bg_bar_polish_4 = BitmapFactory.decodeResource(getResources(), R.drawable.bg_bar_polish_4, options2);
 			bg_bar_polish_4_scaled = Bitmap.createScaledBitmap(bg_bar_polish_4, width, height/6, true);
 			
-			bg_bar_polish_5 = BitmapFactory.decodeResource(getResources(), R.drawable.bg_bar_polish_5, options);
+			bg_bar_polish_5 = BitmapFactory.decodeResource(getResources(), R.drawable.bg_bar_polish_5, options2);
 			bg_bar_polish_5_scaled = Bitmap.createScaledBitmap(bg_bar_polish_5, width, height/6, true);
 			
-			bg_bar_polish_6 = BitmapFactory.decodeResource(getResources(), R.drawable.bg_bar_polish_6, options);
+			bg_bar_polish_6 = BitmapFactory.decodeResource(getResources(), R.drawable.bg_bar_polish_6, options2);
 			bg_bar_polish_6_scaled = Bitmap.createScaledBitmap(bg_bar_polish_6, width, height/6, true);
 			
 		
@@ -221,18 +223,15 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
 		else { //draw the normal state, where no action is happening, just have the background stuff
 			GameVariables.swipe = 0;
-			drawBase(canvas);
-			canvas.drawBitmap(bg_polish, centerx2-width/2, 0, null);
-
-			canvas.drawBitmap(bg_pink_screen1, centerx-width/2, 0, null);
-			//canvas.drawBitmap(bg_pink_screen2, centerx2-width/2, 0, null);
-			canvas.drawBitmap(bg_pink_screen2, centerx2-width/2, 0, null);
 			
-			canvas.drawBitmap(bg_table_scaled, centerx-width/2, 3*(height/4), null);
-			//canvas.drawBitmap(bg_hand_scaled, centerx2-bg_hand_scaled.getWidth()/2, 0, null);
-			canvas.drawBitmap(bg_table_scaled, centerx2-width/2, 3*(height/4), null);
-			drawBar(canvas);
-			drawObject(canvas);
+			drawBase(canvas); //base yellow layer to avoid tearing during transitions
+			canvas.drawBitmap(bg_polish, centerx2-width/2, 0, null); //draw the gradient layer
+			canvas.drawBitmap(bg_pink_screen1, centerx-width/2, 0, null); //screen 1 hand
+			canvas.drawBitmap(bg_pink_screen2, centerx2-width/2, 0, null); //screen 2 hand
+			canvas.drawBitmap(bg_table_scaled, centerx-width/2, 3*(height/4), null); //screen 1 table
+			canvas.drawBitmap(bg_table_scaled, centerx2-width/2, 3*(height/4), null); // screen 2 table
+			drawBar(canvas); //draw the menu bar translucent rectangle (conditional)
+			drawObject(canvas); //some squares for debugging
 			
 			if (GameVariables.listener_bOne == 1) { //Demonstrating button click actions in surface view. Draw a black square on click.
 				canvas.drawRect(centerx+0, centery - 300, centerx+100, centery - 200, paintText);
@@ -252,8 +251,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 			}
 		}
 	}
-
-
 
 	private void drawBar_Polish(Canvas canvas) {
 		// TODO Auto-generated method stub
