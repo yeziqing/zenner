@@ -198,6 +198,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 			
 			if (centerx <= width/2-width) GameVariables.swipe=0; //try to reset to "not swiping" state
 			
+			toggleButtonVisibility(2); //make all buttons for screen 2 visible and all buttons for screen 1 INVISIBLE
 			shiftLeft();
 			drawBase(canvas);
 			canvas.drawBitmap(bg_polish, centerx2-width/2, 0, null);
@@ -207,15 +208,14 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 			canvas.drawBitmap(bg_table_scaled, centerx2-width/2, 3*(height/4), null);
 			drawBar(canvas);
 			drawObject(canvas);
-			
-			toggleButtonVisibility(2); //make all buttons for screen 2 visible and all buttons for screen 1 INVISIBLE
-	
+
 		}
 		
 		else if (GameVariables.showBar == false && GameVariables.swipe == 2) { //Boundaries for shift right virtual space
 			
 			if (centerx2 >= width/2 + width) GameVariables.swipe = 0;
 			
+			toggleButtonVisibility(1); //make all buttons for screen 1 visible and all buttons for screen 2 INVISIBLE
 			shiftRight();
 			drawBase(canvas);
 			canvas.drawBitmap(bg_polish, centerx2-width/2, 0, null);
@@ -225,8 +225,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 			canvas.drawBitmap(bg_table_scaled, centerx2-width/2, 3*(height/4), null);
 			drawBar(canvas);
 			drawObject(canvas);
-			
-			toggleButtonVisibility(1); //make all buttons for screen 1 visible and all buttons for screen 2 INVISIBLE
+				
 		}
 
 		else { //draw the normal state, where no action is happening, just have the background stuff
