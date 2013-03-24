@@ -15,7 +15,7 @@ public class GameLoopThread extends Thread {
 	private boolean mFinished;
 
 	AudioTrack track;
-	static final long FPS = 60;
+	//static final long FPS = 60;
 	private GameView view;
 	private boolean running = false;
        
@@ -36,7 +36,7 @@ public class GameLoopThread extends Thread {
  
        @Override
        public void run() {
-    	   	long ticksPS = 1000/FPS; //100 is minimum in which each loop has to last
+    	   	long ticksPS = 1000/GameVariables.FPS; //100 is minimum in which each loop has to last
     	   	long startTime;
     	   	long sleepTime;
     	   	

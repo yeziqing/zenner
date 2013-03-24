@@ -69,7 +69,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	public static Bitmap bg_table, bg_table_scaled; //layer3
 	public static Bitmap bg_bar,bg_bar_scaled; //layer4
 	
-	
+	public static BitmapFactory.Options oPolishGradient;
 	
 	//menu pics
 	public static Bitmap bg_bar_polish_1, bg_bar_polish_2, bg_bar_polish_3, bg_bar_polish_4, bg_bar_polish_5, bg_bar_polish_6;
@@ -99,10 +99,18 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 		options.inDither = false;
 		options.inPreferredConfig = Bitmap.Config.ARGB_8888;
 		
-		BitmapFactory.Options options2 = new BitmapFactory.Options();
-		options2.inScaled = false;
-		options2.inDither = false;
-		options2.inSampleSize = 2;
+		BitmapFactory.Options options3 = new BitmapFactory.Options();
+		options3.inScaled = false;
+		options3.inDither = false;
+		options3.inSampleSize = 2;
+		options3.inPreferQualityOverSpeed = false;
+		
+		oPolishGradient = new BitmapFactory.Options();
+		oPolishGradient.inScaled = false;
+		oPolishGradient.inDither = false;
+		//options2.inSampleSize = 2;
+		oPolishGradient.inPreferQualityOverSpeed = false;
+		//oPolishGradient.inPreferredConfig = Bitmap.Config.ARGB_4444;
 		
 		//bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.bg_pink_screen1, options);
 		//bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.bg_pink_screen2, options);
@@ -123,22 +131,22 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 		
 		//bar menus
 			//nail polish
-			bg_bar_polish_1 = BitmapFactory.decodeResource(getResources(), R.drawable.bg_bar_polish_1, options2);
+			bg_bar_polish_1 = BitmapFactory.decodeResource(getResources(), R.drawable.bg_bar_polish_1, options3);
 			bg_bar_polish_1_scaled = Bitmap.createScaledBitmap(bg_bar_polish_1, width, height/6, true);
 			
-			bg_bar_polish_2 = BitmapFactory.decodeResource(getResources(), R.drawable.bg_bar_polish_2, options2);
+			bg_bar_polish_2 = BitmapFactory.decodeResource(getResources(), R.drawable.bg_bar_polish_2, options3);
 			bg_bar_polish_2_scaled = Bitmap.createScaledBitmap(bg_bar_polish_2, width, height/6, true);
 			
-			bg_bar_polish_3 = BitmapFactory.decodeResource(getResources(), R.drawable.bg_bar_polish_3, options2);
+			bg_bar_polish_3 = BitmapFactory.decodeResource(getResources(), R.drawable.bg_bar_polish_3, options3);
 			bg_bar_polish_3_scaled = Bitmap.createScaledBitmap(bg_bar_polish_3, width, height/6, true);
 			
-			bg_bar_polish_4 = BitmapFactory.decodeResource(getResources(), R.drawable.bg_bar_polish_4, options2);
+			bg_bar_polish_4 = BitmapFactory.decodeResource(getResources(), R.drawable.bg_bar_polish_4, options3);
 			bg_bar_polish_4_scaled = Bitmap.createScaledBitmap(bg_bar_polish_4, width, height/6, true);
 			
-			bg_bar_polish_5 = BitmapFactory.decodeResource(getResources(), R.drawable.bg_bar_polish_5, options2);
+			bg_bar_polish_5 = BitmapFactory.decodeResource(getResources(), R.drawable.bg_bar_polish_5, options3);
 			bg_bar_polish_5_scaled = Bitmap.createScaledBitmap(bg_bar_polish_5, width, height/6, true);
 			
-			bg_bar_polish_6 = BitmapFactory.decodeResource(getResources(), R.drawable.bg_bar_polish_6, options2);
+			bg_bar_polish_6 = BitmapFactory.decodeResource(getResources(), R.drawable.bg_bar_polish_6, options3);
 			bg_bar_polish_6_scaled = Bitmap.createScaledBitmap(bg_bar_polish_6, width, height/6, true);
 			
 		
@@ -269,42 +277,42 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 			case 1:
 				canvas.drawBitmap(bg_bar_polish_1_scaled, centerx2-width/2, 4*height/7, null);
 				if (touchX > 0 && touchX < width/8 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish1); //set the gradient
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish1, oPolishGradient); //set the gradient
 					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
 					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
 				}
 				if (touchX > width/8 && touchX < (width/8)*2 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish2); //set the gradient
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish2, oPolishGradient); //set the gradient
 					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
 					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
 				}
 				if (touchX > (width/8)*2 && touchX < (width/8)*3 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish3); //set the gradient
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish3, oPolishGradient); //set the gradient
 					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
 					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
 				}
 				if (touchX > (width/8)*3 && touchX < (width/8)*4 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish4); //set the gradient
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish4, oPolishGradient); //set the gradient
 					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
 					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
 				}
 				if (touchX > (width/8)*4 && touchX < (width/8)*5 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish5); //set the gradient
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish5, oPolishGradient); //set the gradient
 					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
 					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
 				}
 				if (touchX > (width/8)*5 && touchX < (width/8)*6 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish6); //set the gradient
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish6, oPolishGradient); //set the gradient
 					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
 					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
 				}
 				if (touchX > (width/8)*6 && touchX < (width/8)*7 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish7); //set the gradient
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish7, oPolishGradient); //set the gradient
 					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
 					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
 				}
 				if (touchX > (width/8)*7 && touchX < (width/8)*8 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish8); //set the gradient
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish8, oPolishGradient); //set the gradient
 					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
 					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
 				}
@@ -573,7 +581,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 			centerx-= speed;
 			centerx2-= speed;
 		}
-		
 		
 	}
 	

@@ -2,10 +2,13 @@ package com.modiface.NailArtist;
 
 public class GameVariables {
 
-	public static int touchY = 0;
+	public static int tY = 0;
+	public static int tX = 0;
+	
 	public static int pause = 0;
 	public static int isRunning = 0;
 	
+	final public static int FPS = 120;
 	public static double DSF = 0.55; //Device Scale Factor
 	public static int SSF = 8;
 	

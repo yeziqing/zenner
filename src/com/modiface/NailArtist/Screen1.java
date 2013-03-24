@@ -317,6 +317,7 @@ public class Screen1 extends Activity implements OnClickListener{
 	   	
 	   	bNailPolish.setOnClickListener(new View.OnClickListener() {
 	         public void onClick(View v) {
+	        	resetTouch(); //reset touch coordinates so clicks in the bar when bar is not showing does not propagate to action afterwards when bar is shown
 	        	if (GameVariables.listener_bNailPolish == 0 && GameVariables.swipe == 0) {
 	        		GameVariables.resetTogglables();
 	        		GameVariables.listener_bNailPolish = 1;
@@ -335,14 +336,15 @@ public class Screen1 extends Activity implements OnClickListener{
 	   	
 	   	bNailSet.setOnClickListener(new View.OnClickListener() {
 	         public void onClick(View v) {
-	        	if (GameVariables.listener_bNailSet == 0) {
+	        	 resetTouch();
+	        	if (GameVariables.listener_bNailSet == 0 && GameVariables.swipe == 0) {
 	        		GameVariables.resetTogglables();
 	        		GameVariables.listener_bNailSet = 1;
 	        		resetButtonAlpha();
 	        		bNailSet.setAlpha(50);
 	        		GameVariables.showBar = true;
 	        	}
-	        	else if (GameVariables.listener_bNailSet == 1){
+	        	else if (GameVariables.listener_bNailSet == 1 && GameVariables.swipe == 0){
 	        		GameVariables.listener_bNailSet = 0; 
 	        		resetButtonAlpha();
 	        		GameVariables.showBar = false;
@@ -353,14 +355,15 @@ public class Screen1 extends Activity implements OnClickListener{
 	   	
 	   	bGems.setOnClickListener(new View.OnClickListener() {
 	         public void onClick(View v) {
-	        	if (GameVariables.listener_bGems == 0) {
+	        	 resetTouch();
+	        	if (GameVariables.listener_bGems == 0 && GameVariables.swipe == 0) {
 	        		GameVariables.resetTogglables();
 	        		GameVariables.listener_bGems = 1;
 	        		resetButtonAlpha();
 	        		bGems.setAlpha(50);
 	        		GameVariables.showBar = true;
 	        	}
-	        	else if (GameVariables.listener_bGems == 1){
+	        	else if (GameVariables.listener_bGems == 1 && GameVariables.swipe == 0){
 	        		GameVariables.listener_bGems = 0; 
 	        		resetButtonAlpha();
 	        		GameVariables.showBar = false;
@@ -371,14 +374,15 @@ public class Screen1 extends Activity implements OnClickListener{
 	   	
 	   	bRings.setOnClickListener(new View.OnClickListener() {
 	         public void onClick(View v) {
-	        	if (GameVariables.listener_bRings == 0) {
+	        	 resetTouch();
+	        	if (GameVariables.listener_bRings == 0 && GameVariables.swipe == 0) {
 	        		GameVariables.resetTogglables();
 	        		GameVariables.listener_bRings = 1;
 	        		resetButtonAlpha();
 	        		bRings.setAlpha(50);
 	        		GameVariables.showBar = true;
 	        	}
-	        	else if (GameVariables.listener_bRings == 1){
+	        	else if (GameVariables.listener_bRings == 1 && GameVariables.swipe == 0){
 	        		GameVariables.listener_bRings = 0; 
 	        		resetButtonAlpha();
 	        		GameVariables.showBar = false;
@@ -516,6 +520,11 @@ public class Screen1 extends Activity implements OnClickListener{
         }
 
     }
+	
+	public void resetTouch() {
+		GameView.touchX=0;
+	 	GameView.touchY=0;
+	}
 
 	//Unimplemented method from Gesture thingy
 	@Override
