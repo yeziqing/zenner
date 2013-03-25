@@ -456,9 +456,9 @@ public class Screen1 extends Activity implements OnClickListener{
     	//synchronized (GameView.gameLoopThread) {    
           //  GameView.gameLoopThread.notify();
         //}
-    	GameView.gameLoopThread.onResume();
-    	GameView.gameLoopThread.setRunning(true);
     	
+    	GameView.gameLoopThread.setRunning(true);
+    	GameView.gameLoopThread.onResume();
     	
     	
     }
@@ -477,8 +477,8 @@ public class Screen1 extends Activity implements OnClickListener{
     protected void onStop() {
         super.onStop();
         GameView.gameLoopThread.setRunning(false);
-        finish();
-        System.gc();
+      //  finish();
+       // System.gc();
     }
 	
 	@Override

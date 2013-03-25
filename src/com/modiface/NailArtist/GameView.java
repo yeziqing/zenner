@@ -69,7 +69,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	public static Bitmap bg_table, bg_table_scaled; //layer3
 	public static Bitmap bg_bar,bg_bar_scaled; //layer4
 	
-	public static BitmapFactory.Options oPolishGradient;
+	public static BitmapFactory.Options options, options3, oPolishGradient;
 	
 	//menu pics
 	public static Bitmap bg_bar_polish_1, bg_bar_polish_2, bg_bar_polish_3, bg_bar_polish_4, bg_bar_polish_5, bg_bar_polish_6;
@@ -94,21 +94,24 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 		paintText.setColor(Color.BLACK);
 		paintText.setTextAlign(Align.CENTER);
 		
-		BitmapFactory.Options options = new BitmapFactory.Options();
+		//use this Bitmap.option for drawing hand_nothing 1&2
+		options = new BitmapFactory.Options();
 		options.inScaled = false;
 		options.inDither = false;
+		options.inSampleSize = 1;
 		options.inPreferredConfig = Bitmap.Config.ARGB_8888;
 		
-		BitmapFactory.Options options3 = new BitmapFactory.Options();
+		//use this Bitmap.option for drawing nail polish menu bars
+		options3 = new BitmapFactory.Options();
 		options3.inScaled = false;
 		options3.inDither = false;
 		options3.inSampleSize = 2;
 		options3.inPreferQualityOverSpeed = false;
 		
+		//use this option to draw the gradient background layer for nail polish colours
 		oPolishGradient = new BitmapFactory.Options();
 		oPolishGradient.inScaled = false;
 		oPolishGradient.inDither = false;
-		//options2.inSampleSize = 2;
 		oPolishGradient.inPreferQualityOverSpeed = false;
 		//oPolishGradient.inPreferredConfig = Bitmap.Config.ARGB_4444;
 		
@@ -277,228 +280,228 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 				canvas.drawBitmap(bg_bar_polish_1_scaled, centerx2-width/2, 4*height/7, null);
 				if (touchX > 0 && touchX < width/8 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
 					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish1, oPolishGradient); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 				if (touchX > width/8 && touchX < (width/8)*2 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
 					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish2, oPolishGradient); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 				if (touchX > (width/8)*2 && touchX < (width/8)*3 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
 					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish3, oPolishGradient); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 				if (touchX > (width/8)*3 && touchX < (width/8)*4 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
 					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish4, oPolishGradient); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 				if (touchX > (width/8)*4 && touchX < (width/8)*5 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
 					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish5, oPolishGradient); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 				if (touchX > (width/8)*5 && touchX < (width/8)*6 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
 					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish6, oPolishGradient); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 				if (touchX > (width/8)*6 && touchX < (width/8)*7 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
 					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish7, oPolishGradient); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 				if (touchX > (width/8)*7 && touchX < (width/8)*8 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
 					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish8, oPolishGradient); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 			break;
 			case 2:
 				canvas.drawBitmap(bg_bar_polish_2_scaled, centerx2-width/2, 4*height/7, null);
 				if (touchX > 0 && touchX < width/8 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish9); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish9, oPolishGradient); //set the gradient
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 				if (touchX > width/8 && touchX < (width/8)*2 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish10); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish10, oPolishGradient); //set the gradient
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 				if (touchX > (width/8)*2 && touchX < (width/8)*3 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish11); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish11, oPolishGradient); //set the gradient
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 				if (touchX > (width/8)*3 && touchX < (width/8)*4 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish12); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish12, oPolishGradient); //set the gradient
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 				if (touchX > (width/8)*4 && touchX < (width/8)*5 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish13); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish13, oPolishGradient); //set the gradient
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 				if (touchX > (width/8)*5 && touchX < (width/8)*6 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish14); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish14, oPolishGradient); //set the gradient
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 				if (touchX > (width/8)*6 && touchX < (width/8)*7 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish15); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish15, oPolishGradient); //set the gradient
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 				if (touchX > (width/8)*7 && touchX < (width/8)*8 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish16); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish16, oPolishGradient); //set the gradient
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 			break;
 			case 3:
 				canvas.drawBitmap(bg_bar_polish_3_scaled, centerx2-width/2, 4*height/7, null);
 				if (touchX > 0 && touchX < width/8 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish17); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish17, oPolishGradient); //set the gradient
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 				if (touchX > width/8 && touchX < (width/8)*2 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish18); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish18, oPolishGradient); //set the gradient
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 				if (touchX > (width/8)*2 && touchX < (width/8)*3 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish19); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish19, oPolishGradient); //set the gradient
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 				if (touchX > (width/8)*3 && touchX < (width/8)*4 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish20); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish20, oPolishGradient); //set the gradient
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 				if (touchX > (width/8)*4 && touchX < (width/8)*5 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish21); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish21, oPolishGradient); //set the gradient
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 				if (touchX > (width/8)*5 && touchX < (width/8)*6 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish22); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish22, oPolishGradient); //set the gradient
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 				if (touchX > (width/8)*6 && touchX < (width/8)*7 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish23); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish23, oPolishGradient); //set the gradient
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 				if (touchX > (width/8)*7 && touchX < (width/8)*8 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish24); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish24, oPolishGradient); //set the gradient
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 			break;
 			case 4:
 				canvas.drawBitmap(bg_bar_polish_4_scaled, centerx2-width/2, 4*height/7, null);
 				if (touchX > 0 && touchX < width/8 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish25); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish25, oPolishGradient); //set the gradient
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 				if (touchX > width/8 && touchX < (width/8)*2 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish26); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish26, oPolishGradient); //set the gradient
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 				if (touchX > (width/8)*2 && touchX < (width/8)*3 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish27); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish27, oPolishGradient); //set the gradient
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 				if (touchX > (width/8)*3 && touchX < (width/8)*4 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish28); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish28, oPolishGradient); //set the gradient
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 				if (touchX > (width/8)*4 && touchX < (width/8)*5 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish29); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish29, oPolishGradient); //set the gradient
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 				if (touchX > (width/8)*5 && touchX < (width/8)*6 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish30); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish30, oPolishGradient); //set the gradient
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 				if (touchX > (width/8)*6 && touchX < (width/8)*7 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish31); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish31, oPolishGradient); //set the gradient
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 				if (touchX > (width/8)*7 && touchX < (width/8)*8 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish32); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish32, oPolishGradient); //set the gradient
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 			break;
 			case 5:
 				canvas.drawBitmap(bg_bar_polish_5_scaled, centerx2-width/2, 4*height/7, null);
 				if (touchX > 0 && touchX < width/8 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish33); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish33, oPolishGradient); //set the gradient
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 				if (touchX > width/8 && touchX < (width/8)*2 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish34); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish34, oPolishGradient); //set the gradient
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 				if (touchX > (width/8)*2 && touchX < (width/8)*3 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish35); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish35, oPolishGradient); //set the gradient
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 				if (touchX > (width/8)*3 && touchX < (width/8)*4 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish36); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish36, oPolishGradient); //set the gradient
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 				if (touchX > (width/8)*4 && touchX < (width/8)*5 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish37); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish37, oPolishGradient); //set the gradient
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 				if (touchX > (width/8)*5 && touchX < (width/8)*6 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish38); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish38, oPolishGradient); //set the gradient
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 				if (touchX > (width/8)*6 && touchX < (width/8)*7 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish39); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish39, oPolishGradient); //set the gradient
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 				if (touchX > (width/8)*7 && touchX < (width/8)*8 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish40); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish40, oPolishGradient); //set the gradient
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 			break;
 			case 6:
 				canvas.drawBitmap(bg_bar_polish_6_scaled, centerx2-width/2, 4*height/7, null);
 				if (touchX > 0 && touchX < width/8 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish41); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish41, oPolishGradient); //set the gradient
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 				if (touchX > width/8 && touchX < (width/8)*2 && touchY > 4*height/7 && touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
-					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish42); //set the gradient
-					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing);
-					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing);
+					bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish42, oPolishGradient); //set the gradient
+					bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1_nothing, options);
+					bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2_nothing, options);
 				}
 			break;
 		}
