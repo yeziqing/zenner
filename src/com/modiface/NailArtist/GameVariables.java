@@ -17,7 +17,12 @@ public class GameVariables {
 	//regular buttons
 	protected static int listener_bOne = 0;
 	
-	//togglable buttons
+	//screen 1 togglable buttons
+	protected static int listener_bSkin = 0;
+	protected static int listener_bFiler = 0;
+	protected static int listener_bScissors = 0;
+	
+	//screen 2 togglable buttons
 	protected static int listener_bNailSticker = 0;
 	protected static int listener_bNailPolish = 0;
 	protected static int listener_bRings = 0;
@@ -34,6 +39,10 @@ public class GameVariables {
 	
 
 	public static void resetTogglables() {
+		listener_bSkin = 0;
+		listener_bFiler = 0;
+		listener_bScissors = 0;
+		
 		listener_bNailSticker = 0;
 		listener_bNailPolish = 0;
 		listener_bRings = 0;

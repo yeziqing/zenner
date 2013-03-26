@@ -253,7 +253,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	private void drawBar(Canvas canvas) {
 		// TODO Auto-generated method stub	
 		if (GameVariables.showBar == true) {
-			canvas.drawBitmap(bg_bar_scaled, centerx2-width/2, 4*height/7, null);
+			
+			canvas.drawBitmap(bg_bar_scaled, centerx-width/2, 4*height/7, null); //screen 1 bar
+			canvas.drawBitmap(bg_bar_scaled, centerx2-width/2, 4*height/7, null); //screen 2 bar
 			
 			if (GameVariables.listener_bNailPolish == 1) { //nail polish button is activated
 				
@@ -667,8 +669,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 				        Screen1.bSkin.setVisibility(View.VISIBLE);
 				    }
 				});
-				
-				
+		
 				break;
 				
 				
@@ -737,10 +738,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 				        Screen1.bGems.setVisibility(View.VISIBLE);
 				    }
 				});
-				
-				
-				
-				
+						
 				break;
 			
 		}

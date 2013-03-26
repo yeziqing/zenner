@@ -387,7 +387,60 @@ public class Screen1 extends Activity implements OnClickListener{
 	        		resetButtonAlpha();
 	        		GameVariables.showBar = false;
 	        	}
+	         }
+	    });
+	   	
+	   	bSkin.setOnClickListener(new View.OnClickListener() {
+	         public void onClick(View v) {
+	        	 resetTouch();
+	        	if (GameVariables.listener_bSkin == 0 && GameVariables.swipe == 0) {
+	        		GameVariables.resetTogglables();
+	        		GameVariables.listener_bSkin = 1;
+	        		resetButtonAlpha();
+	        		bSkin.setAlpha(50);
+	        		GameVariables.showBar = true; //enable displaying the bar
+	        	}
+	        	else if (GameVariables.listener_bSkin == 1 && GameVariables.swipe == 0){
+	        		GameVariables.listener_bSkin = 0; 
+	        		resetButtonAlpha();
+	        		GameVariables.showBar = false;
+	        	}
+	         }
+	    });
+	   	
+	   	bFiler.setOnClickListener(new View.OnClickListener() {
+	         public void onClick(View v) {
+	        	 resetTouch();
+	        	if (GameVariables.listener_bFiler == 0 && GameVariables.swipe == 0) {
+	        		GameVariables.resetTogglables();
+	        		GameVariables.listener_bFiler = 1;
+	        		resetButtonAlpha();
+	        		bFiler.setAlpha(50);
+	        		GameVariables.showBar = true; //enable displaying the bar
+	        	}
+	        	else if (GameVariables.listener_bFiler == 1 && GameVariables.swipe == 0){
+	        		GameVariables.listener_bFiler = 0; 
+	        		resetButtonAlpha();
+	        		GameVariables.showBar = false;
+	        	}
+	         }
+	    });
 
+	   	bScissors.setOnClickListener(new View.OnClickListener() {
+	         public void onClick(View v) {
+	        	 resetTouch();
+	        	if (GameVariables.listener_bScissors == 0 && GameVariables.swipe == 0) {
+	        		GameVariables.resetTogglables();
+	        		GameVariables.listener_bScissors = 1;
+	        		resetButtonAlpha();
+	        		bScissors.setAlpha(50);
+	        		GameVariables.showBar = true; //enable displaying the bar
+	        	}
+	        	else if (GameVariables.listener_bScissors == 1 && GameVariables.swipe == 0){
+	        		GameVariables.listener_bScissors = 0; 
+	        		resetButtonAlpha();
+	        		GameVariables.showBar = false;
+	        	}
 	         }
 	    });
         
@@ -411,6 +464,11 @@ public class Screen1 extends Activity implements OnClickListener{
 	}
 	
 	private void resetButtonAlpha() {
+		
+		bSkin.setAlpha(255);
+		bFiler.setAlpha(255);
+		bScissors.setAlpha(255);
+		
 		bOne.setAlpha(255);
 		bUndo.setAlpha(255);
 		bApplyAll.setAlpha(255);
