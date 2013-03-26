@@ -2,8 +2,8 @@ package com.modiface.NailArtist;
 
 public class GameVariables {
 
-	public static int tY = 0;
-	public static int tX = 0;
+	public static int touchY = 0;
+	public static int touchX = 0;
 	
 	public static int pause = 0;
 	public static int isRunning = 0;

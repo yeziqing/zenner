@@ -27,9 +27,9 @@ import android.widget.RelativeLayout.LayoutParams;
 public class Screen1 extends Activity implements OnClickListener{
 	
 	
-	private static final int SWIPE_MIN_DISTANCE = 120;
-    private static final int SWIPE_MAX_OFF_PATH = 250;
-    private static final int SWIPE_THRESHOLD_VELOCITY = 200;
+	private static final int SWIPE_MIN_DISTANCE = 70;// 123
+    private static final int SWIPE_MAX_OFF_PATH = 300; //250
+    private static final int SWIPE_THRESHOLD_VELOCITY = 30; //200
     private GestureDetector gestureDetector;
     View.OnTouchListener gestureListener;
 
@@ -509,21 +509,34 @@ public class Screen1 extends Activity implements OnClickListener{
                     return false;
                 // right to left swipe
                 if(e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {                    
-                	GameVariables.swipe = 1;
-                }  else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                	GameVariables.swipe = 2;
+                	GameVariables.swipe = 1;resetTouch();
+                }  
+                else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+                	GameVariables.swipe = 2;resetTouch();
                 }
+                resetTouch(); //reset touch so it won't get mistaken as a click selection
             } catch (Exception e) {
                 // nothing
             }
-            return false;
+            return true;
+        }
+        
+        @Override
+        public boolean onSingleTapConfirmed(MotionEvent e) {
+        	
+        	//gameView.onTouchEvent(e);
+        	if (e.getAction() == MotionEvent.ACTION_DOWN) {
+    			GameVariables.touchX = (int) e.getX();
+    			GameVariables.touchY = (int) e.getY();
+        	}
+            return super.onSingleTapConfirmed(e);
         }
 
     }
 	
 	public void resetTouch() {
-		GameView.touchX=0;
-	 	GameView.touchY=0;
+		GameVariables.touchX=0;
+	 	GameVariables.touchY=0;
 	}
 
 	//Unimplemented method from Gesture thingy
