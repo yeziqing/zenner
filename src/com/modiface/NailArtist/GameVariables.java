@@ -5,6 +5,7 @@ public class GameVariables {
 	public static int currentScreen = 1; //1 = screen1 | 2 = screen2
 	public static int touchY = 0;
 	public static int touchX = 0;
+	public static int clear_all = 0;
 	
 	public static int pause = 0;
 	public static int isRunning = 0;
@@ -32,9 +33,9 @@ public class GameVariables {
 	
 	
 	//togglable's screens: tells you which page it is
-		protected static int menu_id_nail_polish = 1; //nail polish
-		protected static int menu_id_nail_set = 1; // nail hubcaps/sets
-		protected static int menu_id_nail_stickers = 1; //nail stickers
+	protected static int menu_id_nail_polish = 1; // nail polish
+	protected static int menu_id_nail_set = 1; // nail hubcaps/sets
+	protected static int menu_id_nail_stickers = 1; // nail stickers
 		
 	public static int swipe = 0; //0 if user is not swiping | 1 if swiping left was detected | 2 if swiping right was detected
 	

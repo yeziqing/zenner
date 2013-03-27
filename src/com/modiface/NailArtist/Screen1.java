@@ -286,9 +286,10 @@ public class Screen1 extends Activity implements OnClickListener{
         
 	   	bOne.setOnClickListener(new View.OnClickListener() { //toggle CLEAR ALL button
 	         public void onClick(View v) {
-	        	 if (GameVariables.listener_bOne == 0) GameVariables.listener_bOne = 1;
-	        	 else {GameVariables.listener_bOne = 0; };
-
+	        	 //if (GameVariables.listener_bOne == 0) GameVariables.listener_bOne = 1;
+	        	 //else {GameVariables.listener_bOne = 0; };
+	        	bOne.setAlpha(50);
+	        	GameVariables.clear_all = 1;
 	         }
 	    });
 	   	

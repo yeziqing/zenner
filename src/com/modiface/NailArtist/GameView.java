@@ -51,8 +51,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
 	public static int centerx; //everything on screen1 is drawn relative to centerx's value
 	public static int centery;
-	
-	private static int centerx2;//everything on screen2 is drawn relative to centerx's value
+	public static int centerx2;//everything on screen2 is drawn relative to centerx's value
 	
 	public static int screenID = 0;
 	//public static int GameVariables.touchX;
@@ -233,6 +232,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 			GameVariables.currentScreen = 1; //active screen is screen1
 				
 		}
+		//this case is for if the clear_all button is pressed. Resets the background (with hands) to default.
+		else if (GameVariables.clear_all == 1 && GameVariables.currentScreen == 2) {
+			clearAll(canvas);
+		}
 
 		else { //draw the normal state, where no action is happening, just have the background stuff
 			GameVariables.swipe = 0;
@@ -266,6 +269,20 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 			}
 		}
 	}
+	
+	private void clearAll(Canvas canvas) {
+		//reset background to the default hands
+		bg_pink_screen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hand1, options);
+		bg_pink_screen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hand2, options);
+		
+		GameVariables.clear_all = 0;
+		
+		Screen1.bOne.getHandler().post(new Runnable() { //reset the button's alpha to return to unpressed state
+		    public void run() {
+		        Screen1.bOne.setAlpha(255);
+		    }
+		});
+	}
 
 	private void drawBar_Polish(Canvas canvas) {
 		// TODO Auto-generated method stub
@@ -277,7 +294,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 			GameVariables.swipe = 0;
 			if (GameVariables.menu_id_nail_polish >1) GameVariables.menu_id_nail_polish--;
 		}
-	
+		
 		switch (GameVariables.menu_id_nail_polish) {
 		
 			
@@ -510,6 +527,11 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 				}
 			break;
 		}
+		
+		//reset the touch coordinates so it doesn't stay, which may reactivate the selection even if clear_all is pressed
+		GameVariables.touchX = 0;
+		GameVariables.touchY = 0;
+		
 	}
 
 
@@ -599,7 +621,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 			centerx+= speed;
 			centerx2+= speed;
 		}
-		
 	}
 	
 	public void toggleButtonVisibility(int screen_id) {
