@@ -2,6 +2,7 @@ package com.modiface.NailArtist;
 
 public class GameVariables {
 
+	public static int currentScreen = 1; //1 = screen1 | 2 = screen2
 	public static int touchY = 0;
 	public static int touchX = 0;
 	

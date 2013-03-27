@@ -26,6 +26,8 @@ import android.widget.RelativeLayout.LayoutParams;
 
 public class Screen1 extends Activity implements OnClickListener{
 	
+	private static int screenSizeX;
+	private static int screenSizeY;
 	
 	private static final int SWIPE_MIN_DISTANCE = 70;// 123
     private static final int SWIPE_MAX_OFF_PATH = 300; //250
@@ -72,8 +74,8 @@ public class Screen1 extends Activity implements OnClickListener{
 	@Override
 	protected void onStart() {
 		super.onStart();
-		int w = getWindowManager().getDefaultDisplay().getWidth();
-        int h = getWindowManager().getDefaultDisplay().getHeight();
+		screenSizeX = getWindowManager().getDefaultDisplay().getWidth();
+        screenSizeY = getWindowManager().getDefaultDisplay().getHeight();
         
       
         // Gesture detection
@@ -86,7 +88,7 @@ public class Screen1 extends Activity implements OnClickListener{
         
         GameVariables.isRunning = 1;
         //GameView gameView;
-        gameView = new GameView (this, w, h);
+        gameView = new GameView (this, screenSizeX, screenSizeY);
         game = new FrameLayout(this);  
         GameButtons = new RelativeLayout(this); 
         
@@ -517,6 +519,16 @@ public class Screen1 extends Activity implements OnClickListener{
     	
     	GameView.gameLoopThread.setRunning(true);
     	GameView.gameLoopThread.onResume();
+    	
+    	//code below returns the game to screen 2 if the user minimized the game while on screen 2
+    	//any bar that was inflate is lost (closed upon resume)
+    	//rresetTogglables() to reset all toggable button
+    	//called swipe = 1 to return to screen 2
+    	if (GameVariables.currentScreen == 2 && GameView.centerx == screenSizeX/2) {
+    		GameVariables.showBar = false;
+        	GameVariables.resetTogglables();
+    		GameVariables.swipe = 1;
+    	}
     	
     	
     }

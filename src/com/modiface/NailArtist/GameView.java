@@ -49,8 +49,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	private SurfaceHolder holder;
 	public static GameLoopThread gameLoopThread;
 
-	private static int centerx; //everything on screen1 is drawn relative to centerx's value
-	private static int centery;
+	public static int centerx; //everything on screen1 is drawn relative to centerx's value
+	public static int centery;
 	
 	private static int centerx2;//everything on screen2 is drawn relative to centerx's value
 	
@@ -212,6 +212,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 			canvas.drawBitmap(bg_table_scaled, centerx2-width/2, 3*(height/4), null);
 			drawBar(canvas);
 			drawObject(canvas);
+			GameVariables.currentScreen = 2; //active screen is screen2
 
 		}
 		
@@ -229,6 +230,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 			canvas.drawBitmap(bg_table_scaled, centerx2-width/2, 3*(height/4), null);
 			drawBar(canvas);
 			drawObject(canvas);
+			GameVariables.currentScreen = 1; //active screen is screen1
 				
 		}
 
