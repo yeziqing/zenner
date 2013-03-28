@@ -31,6 +31,11 @@ public class GameVariables {
 	protected static int listener_bNailSet = 0;
 	protected static int listener_bGems = 0;
 	
+	//Memory for Hand
+	
+	protected static int length = 1;
+	protected static int color = 1;
+	protected static int shape = 1;
 	
 	//togglable's screens: tells you which page it is
 	protected static int menu_id_nail_polish = 1; // nail polish
