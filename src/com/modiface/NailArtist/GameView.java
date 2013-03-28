@@ -64,7 +64,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	private Paint paintText = new Paint();
 	
 	public static Bitmap bg_pink_screen1, bg_pink_screen2; //layer1
-	public static Bitmap bg_polish; //layer1 alternative with gradients
+	public static Bitmap bg_polish, bg_hub; //layer1 alternative with gradients
 	public static Bitmap bg_table, bg_table_scaled; //layer3
 	public static Bitmap bg_bar,bg_bar_scaled; //layer4
 	
@@ -74,7 +74,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	public static Bitmap bg_bar_polish_1, bg_bar_polish_2, bg_bar_polish_3, bg_bar_polish_4, bg_bar_polish_5, bg_bar_polish_6;
 	public static Bitmap bg_bar_polish_1_scaled, bg_bar_polish_2_scaled, bg_bar_polish_3_scaled, bg_bar_polish_4_scaled, bg_bar_polish_5_scaled, bg_bar_polish_6_scaled;
     public static Bitmap bg_swatch_bar, bg_swatch_bar_scaled, bg_len_bar, bg_len_bar_scaled;
-	
+	public static Bitmap bg_bar_hub_1, bg_bar_hub_2, bg_bar_hub_3, bg_bar_hub_4, bg_bar_hub_5, bg_bar_hub_6;
+
 	public GameView(Context context, int w, int h) {
 		super(context);
 		gameLoopThread = new GameLoopThread(this);
@@ -128,7 +129,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 		bg_bar_scaled = Bitmap.createScaledBitmap(bg_bar, width, height/6, true);
 
 		bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish0, options); //this is the gradient layer
-		
+		bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.polish0, options); //this is the gradient layer
+
 		//bar menus
 			//nail polish
 			bg_bar_polish_1 = BitmapFactory.decodeResource(getResources(), R.drawable.bg_bar_polish_1, options3);
@@ -157,6 +159,21 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 			bg_len_bar = BitmapFactory.decodeResource(getResources(), R.drawable.lenbar, options3);
 			bg_len_bar = Bitmap.createScaledBitmap(bg_len_bar, width, height/6, true);
 		
+			//nail hub
+			bg_bar_hub_1 = BitmapFactory.decodeResource(getResources(), R.drawable.bg_bar_hub_1, options3);
+			bg_bar_hub_1 = Bitmap.createScaledBitmap(bg_bar_hub_1, width, height/6, true);
+			bg_bar_hub_2 = BitmapFactory.decodeResource(getResources(), R.drawable.bg_bar_hub_2, options3);
+			bg_bar_hub_2 = Bitmap.createScaledBitmap(bg_bar_hub_2, width, height/6, true);
+			bg_bar_hub_3 = BitmapFactory.decodeResource(getResources(), R.drawable.bg_bar_hub_3, options3);
+			bg_bar_hub_3 = Bitmap.createScaledBitmap(bg_bar_hub_3, width, height/6, true);
+			bg_bar_hub_4 = BitmapFactory.decodeResource(getResources(), R.drawable.bg_bar_hub_4, options3);
+			bg_bar_hub_4 = Bitmap.createScaledBitmap(bg_bar_hub_4, width, height/6, true);
+			bg_bar_hub_5 = BitmapFactory.decodeResource(getResources(), R.drawable.bg_bar_hub_5, options3);
+			bg_bar_hub_5 = Bitmap.createScaledBitmap(bg_bar_hub_5, width, height/6, true);
+			bg_bar_hub_6 = BitmapFactory.decodeResource(getResources(), R.drawable.bg_bar_hub_6, options3);
+			bg_bar_hub_6 = Bitmap.createScaledBitmap(bg_bar_hub_6, width, height/6, true);
+			
+
 		//initate canvas holder
 	    holder = getHolder();
         holder.addCallback(this);
@@ -210,6 +227,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 			drawBase(canvas);
 			canvas.drawBitmap(bg_polish, centerx-width/2, 0, null); //draw the gradient layer
 			canvas.drawBitmap(bg_polish, centerx2-width/2, 0, null);
+			canvas.drawBitmap(bg_hub, centerx-width/2, 0, null); //draw the gradient layer
+			canvas.drawBitmap(bg_hub, centerx2-width/2, 0, null);
 			canvas.drawBitmap(bg_pink_screen1, centerx-width/2, 0, null);
 			canvas.drawBitmap(bg_pink_screen2, centerx2-width/2, 0, null);
 			canvas.drawBitmap(bg_table_scaled, centerx-width/2, 3*(height/4), null);
@@ -229,6 +248,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 			drawBase(canvas);
 			canvas.drawBitmap(bg_polish, centerx-width/2, 0, null); //draw the gradient layer
 			canvas.drawBitmap(bg_polish, centerx2-width/2, 0, null);
+			canvas.drawBitmap(bg_hub, centerx-width/2, 0, null); //draw the gradient layer
+			canvas.drawBitmap(bg_hub, centerx2-width/2, 0, null);
 			canvas.drawBitmap(bg_pink_screen1, centerx-width/2, 0, null);
 			canvas.drawBitmap(bg_pink_screen2, centerx2-width/2, 0, null);
 			canvas.drawBitmap(bg_table_scaled, centerx-width/2, 3*(height/4), null);
@@ -249,6 +270,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 			drawBase(canvas); //base yellow layer to avoid tearing during transitions
 			canvas.drawBitmap(bg_polish, centerx-width/2, 0, p); //draw the gradient layer
 			canvas.drawBitmap(bg_polish, centerx2-width/2, 0, p); //draw the gradient layer
+			canvas.drawBitmap(bg_hub, centerx-width/2, 0, null); //draw the gradient layer
+			canvas.drawBitmap(bg_hub, centerx2-width/2, 0, null);
 			canvas.drawBitmap(bg_pink_screen1, centerx-width/2, 0, p); //screen 1 hand
 			canvas.drawBitmap(bg_pink_screen2, centerx2-width/2, 0, p); //screen 2 hand
 			canvas.drawBitmap(bg_table_scaled, centerx-width/2, 3*(height/4), p); //screen 1 table
@@ -278,6 +301,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 			if (GameVariables.listener_bScissors == 1) { //nail polish button is activated				
 				drawBar_Len(canvas);
 			}
+			if (GameVariables.listener_bNailSet == 1) { //nail polish button is activated				
+				drawBar_Hub(canvas);
+			}
 		}
 	}
 	
@@ -287,6 +313,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 		GameVariables.color = 1;
 		GameVariables.shape = 1;
 		bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish0, oPolishGradient); //set the gradient
+		bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish0, oPolishGradient); //set the gradient
+
 		set_hand();
 		GameVariables.clear_all = 0;
 		
@@ -405,6 +433,88 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 		GameVariables.touchY = 0;
 	}
 	
+	private void drawBar_Hub(Canvas canvas) {
+		// TODO Auto-generated method stub
+		if (GameVariables.swipe == 1) {
+			GameVariables.swipe = 0;
+			if (GameVariables.menu_id_nail_set <6) GameVariables.menu_id_nail_set++;
+		}
+		else if (GameVariables.swipe == 2) {
+			GameVariables.swipe = 0;
+			if (GameVariables.menu_id_nail_set >1) GameVariables.menu_id_nail_set--;
+		}
+		
+		switch (GameVariables.menu_id_nail_set) {
+		
+			
+			case 1:
+				canvas.drawBitmap(bg_bar_hub_1, centerx2-width/2, 4*height/7, null);
+				if (GameVariables.touchX > 0 && GameVariables.touchX < width/8 && GameVariables.touchY > 4*height/7 && GameVariables.touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
+					bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub1, oPolishGradient); //set the gradient
+				}
+				if (GameVariables.touchX > width/8 && GameVariables.touchX < (width/8)*2 && GameVariables.touchY > 4*height/7 && GameVariables.touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
+					bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub2, oPolishGradient); //set the gradient
+				}
+				if (GameVariables.touchX > (width/8)*2 && GameVariables.touchX < (width/8)*3 && GameVariables.touchY > 4*height/7 && GameVariables.touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
+					bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub3, oPolishGradient); //set the gradient
+				}
+				if (GameVariables.touchX > (width/8)*3 && GameVariables.touchX < (width/8)*4 && GameVariables.touchY > 4*height/7 && GameVariables.touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
+					bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub4, oPolishGradient); //set the gradient
+				}
+				if (GameVariables.touchX > (width/8)*4 && GameVariables.touchX < (width/8)*5 && GameVariables.touchY > 4*height/7 && GameVariables.touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
+					bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub5, oPolishGradient); //set the gradient
+				}
+				if (GameVariables.touchX > (width/8)*5 && GameVariables.touchX < (width/8)*6 && GameVariables.touchY > 4*height/7 && GameVariables.touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
+					bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub6, oPolishGradient); //set the gradient
+				}
+				if (GameVariables.touchX > (width/8)*6 && GameVariables.touchX < (width/8)*7 && GameVariables.touchY > 4*height/7 && GameVariables.touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
+					bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub7, oPolishGradient); //set the gradient
+				}
+				if (GameVariables.touchX > (width/8)*7 && GameVariables.touchX < (width/8)*8 && GameVariables.touchY > 4*height/7 && GameVariables.touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
+					bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub8, oPolishGradient); //set the gradient
+				}
+			break;
+			case 2:
+				canvas.drawBitmap(bg_bar_hub_2, centerx2-width/2, 4*height/7, null);
+				if (GameVariables.touchX > 0 && GameVariables.touchX < width/8 && GameVariables.touchY > 4*height/7 && GameVariables.touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
+					bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub9, oPolishGradient); //set the gradient
+				}
+				if (GameVariables.touchX > width/8 && GameVariables.touchX < (width/8)*2 && GameVariables.touchY > 4*height/7 && GameVariables.touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
+					bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub10, oPolishGradient); //set the gradient
+				}
+				if (GameVariables.touchX > (width/8)*2 && GameVariables.touchX < (width/8)*3 && GameVariables.touchY > 4*height/7 && GameVariables.touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
+					bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub11, oPolishGradient); //set the gradient
+				}
+				if (GameVariables.touchX > (width/8)*3 && GameVariables.touchX < (width/8)*4 && GameVariables.touchY > 4*height/7 && GameVariables.touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
+					bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub12, oPolishGradient); //set the gradient
+				}
+				if (GameVariables.touchX > (width/8)*4 && GameVariables.touchX < (width/8)*5 && GameVariables.touchY > 4*height/7 && GameVariables.touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
+					bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub13, oPolishGradient); //set the gradient
+				}
+				if (GameVariables.touchX > (width/8)*5 && GameVariables.touchX < (width/8)*6 && GameVariables.touchY > 4*height/7 && GameVariables.touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
+					bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub14, oPolishGradient); //set the gradient
+				}
+				if (GameVariables.touchX > (width/8)*6 && GameVariables.touchX < (width/8)*7 && GameVariables.touchY > 4*height/7 && GameVariables.touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
+					bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub15, oPolishGradient); //set the gradient
+				}
+				if (GameVariables.touchX > (width/8)*7 && GameVariables.touchX < (width/8)*8 && GameVariables.touchY > 4*height/7 && GameVariables.touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
+					bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub16, oPolishGradient); //set the gradient
+				}
+			break;
+			case 3:
+				canvas.drawBitmap(bg_bar_hub_3, centerx2-width/2, 4*height/7, null);
+			break;
+			case 4:
+				canvas.drawBitmap(bg_bar_hub_4, centerx2-width/2, 4*height/7, null);
+			break;
+			case 5:
+				canvas.drawBitmap(bg_bar_hub_5, centerx2-width/2, 4*height/7, null);
+			break;
+			case 6:
+				canvas.drawBitmap(bg_bar_hub_6, centerx2-width/2, 4*height/7, null);
+			break;
+		}
+	}
 	private void drawBar_Polish(Canvas canvas) {
 		// TODO Auto-generated method stub
 		if (GameVariables.swipe == 1) {
