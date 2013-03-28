@@ -301,6 +301,7 @@ public class Screen1 extends Activity implements OnClickListener{
 	   	
 	   	bNailSticker.setOnClickListener(new View.OnClickListener() {
 	         public void onClick(View v) {
+	        	 resetTouch();
 	        	if (GameVariables.listener_bNailSticker == 0) {
 	        		GameVariables.resetTogglables();
 	        		GameVariables.listener_bNailSticker = 1;

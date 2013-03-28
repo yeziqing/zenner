@@ -1,6 +1,8 @@
 package com.modiface.NailArtist;
 
 import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PaintFlagsDrawFilter;
 import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioTrack;
@@ -44,10 +46,12 @@ public class GameLoopThread extends Thread {
              while (running) {
             	 
                     Canvas c = null;
+                    
                     startTime = System.currentTimeMillis();
                     
                     try {
                            c = view.getHolder().lockCanvas();
+                           //c.setDrawFilter(new PaintFlagsDrawFilter(0, Paint.ANTI_ALIAS_FLAG|Paint.FILTER_BITMAP_FLAG)); 
                            synchronized (view.getHolder()) {
                         	   view.onDraw(c);
                         	   

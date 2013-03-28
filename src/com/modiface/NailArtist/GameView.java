@@ -57,6 +57,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	//public static int GameVariables.touchX;
 	//public static int GameVariables.touchY;
 	
+	private Paint p = new Paint();
 	private Paint middle = new Paint();
 	private Paint middle2 = new Paint();
 	private Paint paintBG = new Paint();
@@ -85,6 +86,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 		centery = h/2;
 		centerx2 = w/2 + w;
 
+		p.setAntiAlias(true);
+		p.setFilterBitmap(true);
+		
 		paintBG.setColor(Color.YELLOW);
 		middle.setColor(Color.CYAN);
 		middle2.setColor(Color.GREEN);
@@ -243,12 +247,12 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 			GameVariables.swipe = 0;
 			
 			drawBase(canvas); //base yellow layer to avoid tearing during transitions
-			canvas.drawBitmap(bg_polish, centerx-width/2, 0, null); //draw the gradient layer
-			canvas.drawBitmap(bg_polish, centerx2-width/2, 0, null); //draw the gradient layer
-			canvas.drawBitmap(bg_pink_screen1, centerx-width/2, 0, null); //screen 1 hand
-			canvas.drawBitmap(bg_pink_screen2, centerx2-width/2, 0, null); //screen 2 hand
-			canvas.drawBitmap(bg_table_scaled, centerx-width/2, 3*(height/4), null); //screen 1 table
-			canvas.drawBitmap(bg_table_scaled, centerx2-width/2, 3*(height/4), null); // screen 2 table
+			canvas.drawBitmap(bg_polish, centerx-width/2, 0, p); //draw the gradient layer
+			canvas.drawBitmap(bg_polish, centerx2-width/2, 0, p); //draw the gradient layer
+			canvas.drawBitmap(bg_pink_screen1, centerx-width/2, 0, p); //screen 1 hand
+			canvas.drawBitmap(bg_pink_screen2, centerx2-width/2, 0, p); //screen 2 hand
+			canvas.drawBitmap(bg_table_scaled, centerx-width/2, 3*(height/4), p); //screen 1 table
+			canvas.drawBitmap(bg_table_scaled, centerx2-width/2, 3*(height/4), p); // screen 2 table
 			drawBar(canvas); //draw the menu bar translucent rectangle (conditional)
 			drawObject(canvas); //some squares for debugging
 			
@@ -574,7 +578,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	}
 
 	public void drawObject(Canvas canvas) {
-
+		/*
 		canvas.drawRect(centerx-width/2, centery-height/2,
 				centerx-width/2 + 20, centery-height/2 + 20, middle);
 		canvas.drawRect(centerx2-width/2, centery-height/2,
@@ -582,7 +586,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 			
 		canvas.drawText("Screen " + Integer.toString(GameVariables.swipe), centerx, height/3, paintText);
 		canvas.drawText("Screen " + Integer.toString(GameVariables.swipe), centerx2, height/3, paintText);
-	
+		*/
 	}
 	
 	public void onAccuracyChanged(Sensor arg0, int arg1) {
