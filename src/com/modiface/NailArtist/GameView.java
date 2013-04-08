@@ -129,7 +129,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 		bg_bar_scaled = Bitmap.createScaledBitmap(bg_bar, width, height/6, true);
 
 		bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish0, options); //this is the gradient layer
-		bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.polish0, options); //this is the gradient layer
+		bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub0, options); //this is the gradient layer
 
 		//bar menus
 			//nail polish
@@ -313,7 +313,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 		GameVariables.color = 1;
 		GameVariables.shape = 1;
 		bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish0, oPolishGradient); //set the gradient
-		bg_polish = BitmapFactory.decodeResource(getResources(), R.drawable.polish0, oPolishGradient); //set the gradient
+		bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub0, oPolishGradient); //set the gradient
 
 		set_hand();
 		GameVariables.clear_all = 0;
@@ -503,12 +503,78 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 			break;
 			case 3:
 				canvas.drawBitmap(bg_bar_hub_3, centerx2-width/2, 4*height/7, null);
+				if (GameVariables.touchX > 0 && GameVariables.touchX < width/8 && GameVariables.touchY > 4*height/7 && GameVariables.touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
+					bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub17, oPolishGradient); //set the gradient
+				}
+				if (GameVariables.touchX > width/8 && GameVariables.touchX < (width/8)*2 && GameVariables.touchY > 4*height/7 && GameVariables.touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
+					bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub18, oPolishGradient); //set the gradient
+				}
+				if (GameVariables.touchX > (width/8)*2 && GameVariables.touchX < (width/8)*3 && GameVariables.touchY > 4*height/7 && GameVariables.touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
+					bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub19, oPolishGradient); //set the gradient
+				}
+				if (GameVariables.touchX > (width/8)*3 && GameVariables.touchX < (width/8)*4 && GameVariables.touchY > 4*height/7 && GameVariables.touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
+					bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub20, oPolishGradient); //set the gradient
+				}
+				if (GameVariables.touchX > (width/8)*4 && GameVariables.touchX < (width/8)*5 && GameVariables.touchY > 4*height/7 && GameVariables.touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
+					bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub21, oPolishGradient); //set the gradient
+				}
+				if (GameVariables.touchX > (width/8)*5 && GameVariables.touchX < (width/8)*6 && GameVariables.touchY > 4*height/7 && GameVariables.touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
+					bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub22, oPolishGradient); //set the gradient
+				}
+				if (GameVariables.touchX > (width/8)*6 && GameVariables.touchX < (width/8)*7 && GameVariables.touchY > 4*height/7 && GameVariables.touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
+					bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub23, oPolishGradient); //set the gradient
+				}
+				if (GameVariables.touchX > (width/8)*7 && GameVariables.touchX < (width/8)*8 && GameVariables.touchY > 4*height/7 && GameVariables.touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
+					bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub24, oPolishGradient); //set the gradient
+				}
 			break;
 			case 4:
 				canvas.drawBitmap(bg_bar_hub_4, centerx2-width/2, 4*height/7, null);
+				if (GameVariables.touchX > 0 && GameVariables.touchX < width/8 && GameVariables.touchY > 4*height/7 && GameVariables.touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
+					bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub25, oPolishGradient); //set the gradient
+				}
+				if (GameVariables.touchX > width/8 && GameVariables.touchX < (width/8)*2 && GameVariables.touchY > 4*height/7 && GameVariables.touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
+					bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub26, oPolishGradient); //set the gradient
+				}
+				if (GameVariables.touchX > (width/8)*2 && GameVariables.touchX < (width/8)*3 && GameVariables.touchY > 4*height/7 && GameVariables.touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
+					bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub27, oPolishGradient); //set the gradient
+				}
+				if (GameVariables.touchX > (width/8)*3 && GameVariables.touchX < (width/8)*4 && GameVariables.touchY > 4*height/7 && GameVariables.touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
+					bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub28, oPolishGradient); //set the gradient
+				}
+				if (GameVariables.touchX > (width/8)*4 && GameVariables.touchX < (width/8)*5 && GameVariables.touchY > 4*height/7 && GameVariables.touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
+					bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub29, oPolishGradient); //set the gradient
+				}
+				if (GameVariables.touchX > (width/8)*5 && GameVariables.touchX < (width/8)*6 && GameVariables.touchY > 4*height/7 && GameVariables.touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
+					bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub30, oPolishGradient); //set the gradient
+				}
+				if (GameVariables.touchX > (width/8)*6 && GameVariables.touchX < (width/8)*7 && GameVariables.touchY > 4*height/7 && GameVariables.touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
+					bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub31, oPolishGradient); //set the gradient
+				}
+				if (GameVariables.touchX > (width/8)*7 && GameVariables.touchX < (width/8)*8 && GameVariables.touchY > 4*height/7 && GameVariables.touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
+					bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub32, oPolishGradient); //set the gradient
+				}
 			break;
 			case 5:
 				canvas.drawBitmap(bg_bar_hub_5, centerx2-width/2, 4*height/7, null);
+				if (GameVariables.touchX > 0 && GameVariables.touchX < width/8 && GameVariables.touchY > 4*height/7 && GameVariables.touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
+					bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub33, oPolishGradient); //set the gradient
+				}
+				if (GameVariables.touchX > width/8 && GameVariables.touchX < (width/8)*2 && GameVariables.touchY > 4*height/7 && GameVariables.touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
+					bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub34, oPolishGradient); //set the gradient
+				}
+				if (GameVariables.touchX > (width/8)*2 && GameVariables.touchX < (width/8)*3 && GameVariables.touchY > 4*height/7 && GameVariables.touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
+					bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub35, oPolishGradient); //set the gradient
+				}
+				if (GameVariables.touchX > (width/8)*3 && GameVariables.touchX < (width/8)*4 && GameVariables.touchY > 4*height/7 && GameVariables.touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
+					bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub36, oPolishGradient); //set the gradient
+				}
+				if (GameVariables.touchX > (width/8)*4 && GameVariables.touchX < (width/8)*5 && GameVariables.touchY > 4*height/7 && GameVariables.touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
+					bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub37, oPolishGradient); //set the gradient
+				}
+				if (GameVariables.touchX > (width/8)*5 && GameVariables.touchX < (width/8)*6 && GameVariables.touchY > 4*height/7 && GameVariables.touchY < 4*height/7+ bg_bar_polish_1_scaled.getHeight()) {
+					bg_hub = BitmapFactory.decodeResource(getResources(), R.drawable.hub38, oPolishGradient); //set the gradient
+				}
 			break;
 			case 6:
 				canvas.drawBitmap(bg_bar_hub_6, centerx2-width/2, 4*height/7, null);
